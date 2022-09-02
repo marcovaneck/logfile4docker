@@ -2,7 +2,7 @@
 
 When developing on OSX accessing the containers logfile might be hard.
 
-## Installing:
+## Installing globally:
 Adjust your docker-daemon to have a different log-driver:
 
 $HOME/.docker/daemon.json
@@ -23,4 +23,15 @@ mkdir $HOME/logs
 Start fluentd:
 ```
 docker-compose up -d
+```
+
+## Intall per container:
+Add to docker-compose.yml
+```yaml
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24225
+        fluentd-async: "true"
+        tag: "docker/{{.Name}}"
 ```
