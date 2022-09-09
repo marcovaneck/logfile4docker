@@ -2,7 +2,8 @@ version: "3"
 
 services:
   fluentd:
-    image: fluent/fluentd:edge
+    build: .
+    #image: fluent/fluentd:edge
     volumes:
       - ${HOME}/logs:/logs
       - ./etc:/fluentd/etc
